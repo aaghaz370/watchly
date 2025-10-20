@@ -1,4 +1,4 @@
-// File: /media/alan/HDD/OTT/cinegeek-beta-main/src/app/(front)/layout.tsx
+// File: C:\dev\watchly\src\app\(front)\layout.tsx
 import * as entry from '../../../../src/app/(front)/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
