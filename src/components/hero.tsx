@@ -141,13 +141,4 @@ export default Hero;
 
 
 
-useEffect(() => {
-  const script = document.createElement("script");
-  script.type = "application/javascript";
-  script.src =
-    "data:text/javascript;base64," +
-    btoa(`(function() {
-      // your full ad script yahan paste karo
-    })();`);
-  document.body.appendChild(script);
-}, []);
+
