@@ -1,3 +1,8 @@
+<meta
+  httpEquiv="Delegate-CH"
+  content="Sec-CH-UA https://s.pemsrv.com; Sec-CH-UA-Mobile https://s.pemsrv.com; Sec-CH-UA-Arch https://s.pemsrv.com; Sec-CH-UA-Model https://s.pemsrv.com; Sec-CH-UA-Platform https://s.pemsrv.com; Sec-CH-UA-Platform-Version https://s.pemsrv.com; Sec-CH-UA-Bitness https://s.pemsrv.com; Sec-CH-UA-Full-Version-List https://s.pemsrv.com; Sec-CH-UA-Full-Version https://s.pemsrv.com;"
+/>
+
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
@@ -119,3 +124,13 @@ export default function RootLayout({
 }
 
 
+useEffect(() => {
+  const script = document.createElement("script");
+  script.type = "application/javascript";
+  script.src =
+    "data:text/javascript;base64," +
+    btoa(`(function() {
+      // your full ad script yahan paste karo
+    })();`);
+  document.body.appendChild(script);
+}, []);
