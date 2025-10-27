@@ -42,6 +42,7 @@ const SiteFooter = () => {
               ),
           )}
         </ul>
+        
         <p className="text-xs text-foreground/60 sm:text-sm">
           Made with 🧡 Univora | All Rights Reserved | {new Date().getFullYear()} {siteConfig.author}
         </p>
@@ -57,7 +58,7 @@ const SiteFooter = () => {
             rel="noreferrer"
             className="font-medium underline underline-offset-4"
           >
-            
+            https://www.effectivegatecpm.com/tj573isc9?key=fe4d927f438bdcaa31fd1eed6e42397a
           </a>
           
         </p>
@@ -68,3 +69,5 @@ const SiteFooter = () => {
 };
 
 export default SiteFooter;
+
+

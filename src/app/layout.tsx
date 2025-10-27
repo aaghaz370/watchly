@@ -124,6 +124,7 @@ export default function RootLayout({
               }}
             />
             <script type='text/javascript' src='//pl27934067.effectivegatecpm.com/42/0e/3d/420e3d4b5f72fc1cbc18139f74bf81bd.js'></script>
+            <script type='text/javascript' src='//pl27934125.effectivegatecpm.com/1a/0e/b3/1a0eb3269b4d9d470e2e1383c3d199b7.js'></script>
           </>
         )}
       </body>
