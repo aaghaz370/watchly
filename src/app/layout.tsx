@@ -12,6 +12,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
 import AdScript from '@/components/AdScript';
 
+// ✅ Font setup
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -23,6 +24,7 @@ const fontHeading = localFont({
   variable: '--font-heading',
 });
 
+// ✅ Viewport configuration
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
@@ -30,6 +32,7 @@ export const viewport: Viewport = {
   ],
 };
 
+// ✅ Metadata (SEO + OG)
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: {
@@ -60,6 +63,7 @@ export const metadata: Metadata = {
   other: { referrer: 'no-referrer-when-downgrade' },
 };
 
+// ✅ Main Layout
 export default function RootLayout({
   children,
 }: {
@@ -68,12 +72,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Required for ExoClick ads (delegate headers) */}
+        {/* ✅ Required for PEMSRV / ExoClick ads */}
         <meta
           httpEquiv="Delegate-CH"
           content="Sec-CH-UA https://s.pemsrv.com; Sec-CH-UA-Mobile https://s.pemsrv.com; Sec-CH-UA-Arch https://s.pemsrv.com; Sec-CH-UA-Model https://s.pemsrv.com; Sec-CH-UA-Platform https://s.pemsrv.com; Sec-CH-UA-Platform-Version https://s.pemsrv.com; Sec-CH-UA-Bitness https://s.pemsrv.com; Sec-CH-UA-Full-Version-List https://s.pemsrv.com; Sec-CH-UA-Full-Version https://s.pemsrv.com;"
         />
       </head>
+
       <body
         className={cn(
           'overflow-y-auto min-h-screen overflow-x-hidden bg-background font-sans antialiased',
@@ -81,10 +86,10 @@ export default function RootLayout({
           fontHeading.variable
         )}
       >
-        {/* ✅ Your Ad Script */}
+        {/* ✅ PEMSRV Popunder Ad Script */}
         <AdScript />
 
-        {/* ✅ Main Site Layout */}
+        {/* ✅ Main App Layout */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -108,11 +113,11 @@ export default function RootLayout({
               id="_next-ga-init"
               dangerouslySetInnerHTML={{
                 __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', { cookie_flags: 'max-age=86400;secure;samesite=none' });
-              `,
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){window.dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', { cookie_flags: 'max-age=86400;secure;samesite=none' });
+                `,
               }}
             />
           </>
