@@ -86,9 +86,6 @@ export default function RootLayout({
           fontHeading.variable
         )}
       >
-        {/* ✅ PEMSRV Popunder Ad Script */}
-        <AdScript />
-
         {/* ✅ Main App Layout */}
         <ThemeProvider
           attribute="class"
@@ -96,7 +93,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Page content */}
           {children}
+
+          {/* ✅ AdScript just before footer */}
+          <AdScript />
+
+          {/* Footer indicators + analytics */}
           <TailwindIndicator />
           <Analytics />
           <SpeedInsights />
@@ -120,9 +123,11 @@ export default function RootLayout({
                 `,
               }}
             />
+            <script type='text/javascript' src='//pl27934067.effectivegatecpm.com/42/0e/3d/420e3d4b5f72fc1cbc18139f74bf81bd.js'></script>
           </>
         )}
       </body>
     </html>
   );
 }
+
