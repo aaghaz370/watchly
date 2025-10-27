@@ -117,3 +117,28 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+// app/layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Tumhari Website Ka Title",
+  description: "Kuch short description...",
+  other: {
+    "6a97888e-site-verification": "032bb8035af0983be7f833b1cff19ddb",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
