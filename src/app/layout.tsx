@@ -125,7 +125,7 @@ export default function RootLayout({
             />
             <script type='text/javascript' src='//pl27934067.effectivegatecpm.com/42/0e/3d/420e3d4b5f72fc1cbc18139f74bf81bd.js'></script>
             <script type='text/javascript' src='//pl27934125.effectivegatecpm.com/1a/0e/b3/1a0eb3269b4d9d470e2e1383c3d199b7.js'></script>
-            <script async="async" data-cfasync="false" src="//pl27934156.effectivegatecpm.com/70acc9a55e5f2ffc4ca9a49609698535/invoke.js"></script>
+           <script async="async" data-cfasync="false" src="//pl27934156.effectivegatecpm.com/70acc9a55e5f2ffc4ca9a49609698535/invoke.js"></script>
 <div id="container-70acc9a55e5f2ffc4ca9a49609698535"></div>
 <script src="https://fpyf8.com/88/tag.min.js" data-zone="180853" async data-cfasync="false"></script>
           </>
