@@ -1,13 +1,7 @@
-<meta
-  httpEquiv="Delegate-CH"
-  content="Sec-CH-UA https://s.pemsrv.com; Sec-CH-UA-Mobile https://s.pemsrv.com; Sec-CH-UA-Arch https://s.pemsrv.com; Sec-CH-UA-Model https://s.pemsrv.com; Sec-CH-UA-Platform https://s.pemsrv.com; Sec-CH-UA-Platform-Version https://s.pemsrv.com; Sec-CH-UA-Bitness https://s.pemsrv.com; Sec-CH-UA-Full-Version-List https://s.pemsrv.com; Sec-CH-UA-Full-Version https://s.pemsrv.com;"
-/>
-
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
-// import { TrpcProvider } from '@/client/trpc-provider';
 import type { Metadata, Viewport } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -15,8 +9,8 @@ import { Analytics } from '@/components/analytics';
 import { siteConfig } from '@/configs/site';
 import { env } from '@/env.mjs';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import AdScript from '@/components/AdScript';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -24,7 +18,6 @@ const fontSans = FontSans({
   display: 'swap',
 });
 
-// Font files can be colocated inside of `pages`
 const fontHeading = localFont({
   src: '../assets/fonts/CalSans-SemiBold.woff2',
   variable: '--font-heading',
@@ -45,12 +38,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [
-    {
-      name: siteConfig.author,
-      url: siteConfig.url,
-    },
-  ],
+  authors: [{ name: siteConfig.author, url: siteConfig.url }],
   creator: siteConfig.author,
   openGraph: {
     type: 'website',
@@ -68,9 +56,7 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.author,
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
+  icons: { icon: '/favicon.ico' },
   other: { referrer: 'no-referrer-when-downgrade' },
 };
 
@@ -81,47 +67,57 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Required for ExoClick ads (delegate headers) */}
+        <meta
+          httpEquiv="Delegate-CH"
+          content="Sec-CH-UA https://s.pemsrv.com; Sec-CH-UA-Mobile https://s.pemsrv.com; Sec-CH-UA-Arch https://s.pemsrv.com; Sec-CH-UA-Model https://s.pemsrv.com; Sec-CH-UA-Platform https://s.pemsrv.com; Sec-CH-UA-Platform-Version https://s.pemsrv.com; Sec-CH-UA-Bitness https://s.pemsrv.com; Sec-CH-UA-Full-Version-List https://s.pemsrv.com; Sec-CH-UA-Full-Version https://s.pemsrv.com;"
+        />
+      </head>
       <body
         className={cn(
-          'overlflow-y-auto min-h-screen overflow-x-hidden bg-background font-sans antialiased',
+          'overflow-y-auto min-h-screen overflow-x-hidden bg-background font-sans antialiased',
           fontSans.variable,
-          fontHeading.variable,
-        )}>
+          fontHeading.variable
+        )}
+      >
+        {/* ✅ Your Ad Script */}
+        <AdScript />
+
+        {/* ✅ Main Site Layout */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange>
-          {/* <TrpcProvider> */}
+          disableTransitionOnChange
+        >
           {children}
           <TailwindIndicator />
           <Analytics />
           <SpeedInsights />
-          {/* </TrpcProvider> */}
-          {env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-            <>
-              <Script
-                id="_next-ga-init"
-                dangerouslySetInnerHTML={{
-                  __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', { cookie_flags: 'max-age=86400;secure;samesite=none' });`,
-                }}
-              />
-              <Script
-                id="_next-ga"
-                src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
-              />
-            </>
-          )}
         </ThemeProvider>
+
+        {/* ✅ Google Analytics (optional) */}
+        {env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+          <>
+            <Script
+              id="_next-ga"
+              src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+            />
+            <Script
+              id="_next-ga-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', { cookie_flags: 'max-age=86400;secure;samesite=none' });
+              `,
+              }}
+            />
+          </>
+        )}
       </body>
     </html>
   );
 }
-
-
-
